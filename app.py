@@ -41,6 +41,8 @@ def app():
         except Exception as e:
             st.error(f"Error adding TMS layer: {e}")
     if point_lat and point_lon:
+        tile = mercantile.tile(lon, lat, zoom=18)
+        st.success(f"Related Tile : {tile.x} , {tile.y}, 18")
         m.add_marker(location=[float(point_lat), float(point_lon)], draggable=True)
     if st.button("Calculate"):
         with st.spinner("Fetching zoom levels..."):
